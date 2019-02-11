@@ -2,10 +2,5 @@
   "version": 2,
   "name": "nodejs-express",
   "builds": [{ "src": "index.js", "use": "@now/node-server" }],
-  "routes": [{ "src": "/(.*)", "dest": "index.js" }],
-  "env": {
-    "DATABASE_ID": "cluster0-lf2iu",
-    "DATABASE_USER": "sayable_user",
-    "DATABASE_PASSWORD": "@sayable-database-password"
-  }
+  "routes": [{ "src": "/(.*)", "dest": "index.js" }]
 }

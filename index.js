@@ -4,8 +4,7 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
-const { DATABASE_USER, DATABASE_PASSWORD, DATABASE_ID } = process.env;
-const uri = `mongodb+srv://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_ID}.mongodb.net/test?retryWrites=true`;
+const uri = `mongodb+srv://public:public@cluster0-c6p6b.mongodb.net/admin`;
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 app.get("*", (req, res) => {
@@ -14,18 +13,18 @@ app.get("*", (req, res) => {
   res.end();
 });
 
-process.stdout.write("about to call client.connect");
+process.stdout.write("\nabout to call client.connect");
 client.connect(err => {
-  process.stdout.write("inside client.connect callback");
+  process.stdout.write("\ninside client.connect callback");
   if (err) {
-    process.stdout.write("[mongo] error");
+    process.stdout.write("\n[mongo] error");
     console.log("error connecting to database", err);
     return;
   }
-  process.stdout.write("[mongo] success");
+  process.stdout.write("\n[mongo] success");
 
   app.listen(port, err => {
     if (err) throw err;
-    console.log(`> Ready On Server http://localhost:${port}`);
+    process.stdout.write(`\n> Ready On Server http://localhost:${port}`);
   });
 });
