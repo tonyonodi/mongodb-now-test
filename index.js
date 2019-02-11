@@ -14,11 +14,15 @@ app.get("*", (req, res) => {
   res.end();
 });
 
+process.stdout.write("about to call client.connect");
 client.connect(err => {
+  process.stdout.write("inside client.connect callback");
   if (err) {
+    process.stdout.write("[mongo] error");
     console.log("error connecting to database", err);
     return;
   }
+  process.stdout.write("[mongo] success");
 
   app.listen(port, err => {
     if (err) throw err;
